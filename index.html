@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Madrasatu Sibgatallah, Idu Abuja</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+      background-color: rgb(64, 74, 83);
+      background-image: url('IMG/IMG-20250623-WA0020.jpg');
+      background-position: 170px;
+      background-clip: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    video#backgroundVideo {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      padding: 40px;
+      background-color: rgba(0, 0, 0, 0.7);
+      max-width: 600px;
+      margin: 50px auto;
+      border-radius: 15px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .welcome {
+      color: blue;
+      background-image: url('IMG/Screenshot (72).png');
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      color: #aaa;
+      font-size: 14px;
+    }
+    .scrolling-text1 {
+      color: red;
+      font-weight: bold;
+      animation: blink 5s infinite, scroll 10s linear infinite;
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
+      font-size: xx-large;
+      border-radius: 10px;
+      border-style: double;
+      border-color: red;
+    }
+
+    .scrolling-text2 {
+      color: blue;
+      font-weight: bold;
+      animation: blink 5s infinite, scroll 10s linear infinite;
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
+      font-size: xx-large;
+      border-radius: 10px;
+      border-style: double;
+      border-color: red;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .student-list {
+      margin-top: 20px;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 10px;
+      border-radius: 10px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .action-buttons {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .main-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      margin-top: 50px;
+      gap: 20px;
+    }
+
+    .side-video {
+      position: fixed;
+      top: 80px;
+      width: 200px;
+      height: auto;
+      z-index: 1;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    }
+
+    .side-video.left {
+      left: 10px;
+    }
+
+    .side-video.right {
+      right: 10px;
+    }
+
+    .content {
+      margin-left: 220px;
+      margin-right: 220px;
+    }
+
+    @media (max-width: 768px) {
+      .side-video {
+        display: none;
+      }
+
+      .content {
+        margin: 20px;
+      }
+      @keyframes popupFade {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+#slideshow {
+  animation: popupFade 0.8s ease-in-out;
+  color: #fff;
+  font-size: 20px;
+}
+
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <video id="leftVideo" class="side-video left" autoplay muted loop>
+    <source src="IMG/video_left.mp4" type="video/mp4">
+    Your browser does not support the video element.
+  </video>
+
+  <video id="rightVideo" class="side-video right" autoplay muted loop>
+    <source src="IMG/video_right.mp4" type="video/mp4">
+    Your browser does not support the video element.
+  </video>
+
+  <div class="content">
+    <h1>ASSALAMU ALAIKUM WARAHMATULLAH WABARAKATUH</h1>
+    <marquee direction="left" class="welcome"><h1>WELCOME TO MADRASATU SIBGATALLAH MINI WALEEMAH RESULT PORTAL</h1></marquee>
+
+    <form id="studentForm">
+      <label for="name">Enter your name (UPPERCASE only):</label>
+      <input type="text" id="name" name="name" required pattern="[A-Z ]+">
+
+      <label for="score1">Enter score 1:</label>
+      <input type="number" id="score1" name="score1" min="0" max="20" required>
+
+      <label for="score2">Enter score 2:</label>
+      <input type="number" id="score2" name="score2" min="0" max="20" required>
+
+      <label for="score3">Enter score 3:</label>
+      <input type="number" id="score3" name="score3" min="0" max="20" required>
+
+      <label for="score4">Enter score 4:</label>
+      <input type="number" id="score4" name="score4" min="0" max="20" required>
+
+      <label for="score5">Enter score 5:</label>
+      <input type="number" id="score5" name="score5" min="0" max="20" required>
+
+      <button type="submit">Will I do Waleemah?</button>
+    </form>
+
+    <div class="action-buttons">
+      <button onclick="showAllScores()">Show All Students' Scores</button>
+      <button onclick="exportToExcel()">Export to Excel</button>
+      <button onclick="printScores()">Print Scores</button>
+      <button onclick="printPassedStudents()" style="margin: 20px; padding: 10px;">🖨️ Export Passed Students to PDF</button>
+    </div>
+
+    <div id="result"></div>
+    <div id="studentScores" class="student-list"></div>
+  </div>
+<!-- Slideshow container -->
+<div id="slideshow" style="display: none; position: fixed; top: 20%; left: 50%; transform: translateX(-50%); z-index: 9999; background-color: rgba(0,0,0,0.8); padding: 20px; border-radius: 15px; text-align: center;">
+  <img id="studentImage" src="" alt="Student Picture" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover;"><br>
+  <h2 id="studentName"></h2>
+  <h3 id="studentScore"></h3>
+</div>
+
+  <footer>
+    &copy; Abdullahi Musa Yaro
+  </footer>
+
+  <audio id="leftAudio">
+    <source src="Audio/audio_left.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <audio id="rightAudio">
+    <source src="Audio/audio_right.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+  <script>
+    const students = [];
+
+    document.getElementById("studentForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const nameInput = document.getElementById("name");
+      const name = nameInput.value.trim().toUpperCase();
+      nameInput.value = name;
+
+      const namePattern = /^[A-Z ]+$/;
+      if (!namePattern.test(name)) {
+        alert("Please enter your name in UPPERCASE letters only (A-Z).");
+        return;
+      }
+
+      const scores = [
+        parseInt(document.getElementById("score1").value),
+        parseInt(document.getElementById("score2").value),
+        parseInt(document.getElementById("score3").value),
+        parseInt(document.getElementById("score4").value),
+        parseInt(document.getElementById("score5").value)
+      ];
+
+      const total = scores.reduce((sum, score) => sum + (isNaN(score) ? 0 : score), 0);
+
+      students.push({ name, total });
+
+      const resultEl = document.getElementById("result");
+      if (total < 25) {
+        resultEl.innerHTML = `<p class="scrolling-text1">${name} YOUR SCORE IS ${total}. SORRY! YOU WILL NOT DO MINI-WALEEMAH.</p>`;
+      } else if (total <= 30) {
+        resultEl.innerHTML = `<p class="scrolling-text2">${name} YOUR SCORE IS ${total}. CONGRATULATIONS! YOU WILL DO MINI-WALEEMAH.</p>`;
+      } else {
+        resultEl.innerHTML = "<p>Error: Total score out of expected range.</p>";
+      }
+
+      this.reset();
+    });
+
+    function showAllScores() {
+      const container = document.getElementById("studentScores");
+      container.innerHTML = "<h3>All Students' Scores</h3>";
+      if (students.length === 0) {
+        container.innerHTML += "<p>No student records yet.</p>";
+        return;
+      }
+
+      const list = document.createElement("ul");
+      list.style.textAlign = "left";
+      students.forEach((student, index) => {
+        const item = document.createElement("li");
+        item.textContent = `${index + 1}. ${student.name} - Total Score: ${student.total}`;
+        list.appendChild(item);
+      });
+      container.appendChild(list);
+    }
+
+    function exportToExcel() {
+      if (students.length === 0) {
+        alert("No student data to export.");
+        return;
+      }
+
+      const worksheetData = students.map((student, i) => ({
+        "S/N": i + 1,
+        "Student Name": student.name,
+        "Total Score": student.total
+      }));
+
+      const worksheet = XLSX.utils.json_to_sheet(worksheetData);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "Waleemah Scores");
+      XLSX.writeFile(workbook, "Mini_Waleemah_Scores.xlsx");
+    }
+
+    function printScores() {
+      if (students.length === 0) {
+        alert("No student data to print.");
+        return;
+      }
+
+      let printContent = "<h2>Mini Waleemah Students' Scores</h2><ol>";
+      students.forEach((student, i) => {
+        printContent += `<li>${student.name} - Total Score: ${student.total}</li>`;
+      });
+      printContent += "</ol>";
+
+      const printWindow = window.open('', '', 'height=600,width=800');
+      printWindow.document.write('<html><head><title>Print Scores</title></head><body>');
+      printWindow.document.write(printContent);
+      printWindow.document.write('</body></html>');
+      printWindow.document.close();
+      printWindow.print();
+    }
+
+    // Audio playback setup
+    function setupAudioPlay(videoElement, audioElement) {
+      videoElement.addEventListener("mouseenter", () => {
+        audioElement.currentTime = 0;
+        audioElement.play();
+      });
+
+      videoElement.addEventListener("mouseleave", () => {
+        audioElement.pause();
+        audioElement.currentTime = 0;
+      });
+
+      videoElement.addEventListener("click", () => {
+        if (audioElement.paused) {
+          audioElement.currentTime = 0;
+          audioElement.play();
+        } else {
+          audioElement.pause();
+        }
+      });
+    }
+
+    setupAudioPlay(document.getElementById("leftVideo"), document.getElementById("leftAudio"));
+    setupAudioPlay(document.getElementById("rightVideo"), document.getElementById("rightAudio"));
+    
+  </script>
+  <script>
+    //const fullStudentsData = [
+      //{ name: "AHMAD USMAN", total: 27, image: "IMG/students/ahmad_usman.jpg" },
+      //{ name: "FATIMA BELLO", total: 30, image: "IMG/students/fatima_bello.jpg" },
+      //{ name: "ALIYU KABIR", total: 18, image: "IMG/students/aliyu_kabir.jpg" },
+      // ➕ Add up to 25 students
+    ];
+  
+    let currentIndex = 0;
+    let intervalId = null;
+    let isPaused = false;
+  
+    function updateSlideshow() {
+      const slideshow = document.getElementById("slideshow");
+      const img = document.getElementById("studentImage");
+      const nameEl = document.getElementById("studentName");
+      const scoreEl = document.getElementById("studentScore");
+  
+      const student = fullStudentsData[currentIndex];
+      img.src = student.image;
+      nameEl.textContent = student.name;
+      scoreEl.textContent = `Score: ${student.total}`;
+  
+      // Popup congratulatory message
+      if (student.total >= 25 && student.total <= 30) {
+  document.getElementById("congratsSound").play();
+  alert(`🎉 Congratulations! ${student.name} will do mini-waleemah 🎉`);
+        }
+      }
+    }
+  
+    function startSlideshow() {
+      document.getElementById("slideshow").style.display = "block";
+      updateSlideshow();
+      intervalId = setInterval(() => {
+        nextStudent(true);
+      }, 4000);
+    }
+  
+    function nextStudent(auto = false) {
+      currentIndex = (currentIndex + 1) % fullStudentsData.length;
+      updateSlideshow();
+      if (!auto && isPaused) clearInterval(intervalId);
+    }
+  
+    function prevStudent() {
+      currentIndex = (currentIndex - 1 + fullStudentsData.length) % fullStudentsData.length;
+      updateSlideshow();
+      if (isPaused) clearInterval(intervalId);
+    }
+  
+    function togglePause() {
+      const text = document.getElementById("pausePlayText");
+      if (isPaused) {
+        intervalId = setInterval(() => {
+          nextStudent(true);
+        }, 4000);
+        text.textContent = "⏸ Pause";
+      } else {
+        clearInterval(intervalId);
+        text.textContent = "▶ Play";
+      }
+      isPaused = !isPaused;
+    }
+  
+    // Auto-start on page load
+    window.onload = function () {
+      startSlideshow();
+    };
+  </script>
+  
+  <script>
+    // Sample: Replace with actual 25 names and image filenames
+    //const fullStudentsData = [
+     // { name: "AHMAD USMAN", total: 27, image: "IMG/students/ahmad_usman.jpg" },
+      //{ name: "FATIMA BELLO", total: 30, image: "IMG/students/fatima_bello.jpg" },
+      // Add up to 25 student objects here
+    ];
+  
+    function startSlideshow() {
+      let index = 0;
+      const slideshow = document.getElementById("slideshow");
+      const img = document.getElementById("studentImage");
+      const nameEl = document.getElementById("studentName");
+      const scoreEl = document.getElementById("studentScore");
+  
+      slideshow.style.display = "block";
+  
+      function showStudent() {
+        const student = fullStudentsData[index];
+        img.src = student.image;
+        nameEl.textContent = student.name;
+        scoreEl.textContent = `Score: ${student.total}`;
+  
+        // Show popup if passed
+        if (student.total >= 25 && student.total <= 30) {
+          const msg = `🎉 Congratulations! ${student.name} will do mini-waleemah 🎉`;
+          alert(msg);
+        }
+  
+        index = (index + 1) % fullStudentsData.length;
+      }
+  
+      showStudent();
+      setInterval(showStudent, 4000); // change every 4 seconds
+    }
+  
+    // Optional: Auto-start slideshow on page load
+    window.onload = function () {
+      startSlideshow();
+    };
+  </script>
+  
+  
+  <!-- Slideshow container -->
+<div id="slideshow" style="display: none; position: fixed; top: 15%; left: 50%; transform: translateX(-50%); z-index: 9999; background-color: rgba(0,0,0,0.9); padding: 25px; border-radius: 15px; text-align: center; color: #fff;">
+  <img id="studentImage" src="" alt="Student Picture" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; margin-bottom: 15px;"><br>
+  <h2 id="studentName"></h2>
+  <h3 id="studentScore"></h3>
+  <div style="margin-top: 15px;">
+    <button onclick="prevStudent()">⏮ Prev</button>
+    <button onclick="togglePause()"><span id="pausePlayText">⏸ Pause</span></button>
+    <button onclick="nextStudent()">⏭ Next</button>
+  </div>
+</div>  
+<!-- Background Music -->
+<audio id="bgMusic" src="audio/background.mp3" autoplay loop></audio>
+
+<!-- Congratulatory Sound -->
+<audio id="congratsSound" src="audio/congrats.mp3"></audio>
+</body>
+</html>
